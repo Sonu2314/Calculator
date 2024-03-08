@@ -1,0 +1,54 @@
+import tkinter as tk
+from tkinter.messagebox import showinfo
+
+
+def result(option):
+    print("you have selected = ",option)
+    try:
+        num1=float(strtxt1.get())
+        num2=float(strtxt2.get())
+        #print(num1,num2,type(num1),type(num2))
+
+
+        if option=='+':
+            res=num1+num2
+        elif option=='-':
+            res=num1-num2
+        elif option=='*':
+            res=num1*num2
+        elif option=='/':
+            res=num1/num2
+
+        print(res)
+        msg="result:" +str(res)
+        strresult.set(msg)
+        #strresult.set(str(res))
+
+        showinfo("result",msg)
+    except Exception:
+        showinfo("Alert","Make sure valid data is error")
+
+
+root=tk.Tk()     #obj of the cls tk
+
+root.geometry('500x500')
+
+
+lbl1=tk.Label(root, text="enter 1st no:").place(x=100,y=50)
+lbl2=tk.Label(root, text="enter 2nd no:").place(x=100,y=100)
+strtxt1=tk.StringVar()
+tk.Entry(root,textvar=strtxt1).place(x=200,y=50)
+strtxt2=tk.StringVar()
+tk.Entry(root,textvar=strtxt2).place(x=200,y=100)
+
+btnsum=tk.Button(root,text ="+",command=lambda :result('+')).place(x=100,y=150)
+btnssub=tk.Button(root,text ="-",command=lambda :result('-')).place(x=200,y=150)
+btnmul=tk.Button(root,text ="*",command=lambda :result('*')).place(x=300,y=150)
+btndiv=tk.Button(root,text ="/",command=lambda :result('/')).place(x=400,y=150)
+
+strresult=tk.StringVar()
+strresult.set("result will be displayed here")
+lblresult=tk.Label(root,textvar=strresult,fg="blue",font=('Calibri Bold',20)).place(x=100,y=200)
+
+
+root.mainloop()
